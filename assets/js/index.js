@@ -73,6 +73,137 @@ var Index = function () {
         }
     };
 
+    var runChartOmzetByPerItem = function () {
+
+        var currentYear = (new Date).getFullYear();
+        $('#tahun_ini2').text(currentYear);
+        //  alert(tahun_ini);
+        $('.dropdown-menu li').click(function () {
+            var thn2 = $(this).attr("value");
+            get_tahun2(thn2);
+            $('#tahun_ini2').text(thn2);
+        });
+
+        get_tahun2($('#tahun_ini2').text());
+
+        function get_tahun2(val) {
+            $.ajax({
+                url: "home/getTotalPenjualanDetailByYear/" + val,
+                dataType: 'json',
+                method: 'GET',
+                success: function (response) {
+                    var data_omzet = [], data_produk = [], data_omzet_new = [],
+                            series = response.data.length;
+
+                    // var nmproduk = [];
+                    for (var i = 0; i < series; i++) {
+                        data_produk[i] = [response.data[i].NamaProduk];
+                        data_omzet[i] = [response.data[i].TotQty.toString().split(",")];//[response.data[i].TotQty];
+
+                    }
+                  //  alert(data_omzet.length);
+
+                    var d = (data_omzet.length > 0 ? data_omzet[0].toString().split(",") : "");
+                    var e = (data_omzet.length > 1 ? data_omzet[1].toString().split(",") : ""); 
+                    var f = (data_omzet.length > 2 ? data_omzet[2].toString().split(",") : "");
+                    var g = (data_omzet.length > 3 ? data_omzet[3].toString().split(",") : "");
+                    var h = (data_omzet.length > 4 ? data_omzet[4].toString().split(",") : "");
+                    
+                    //alert(response.thn);
+                    $.plot("#placeholder6", [
+                        {
+                            color: "blue",
+                            label: data_produk[0],
+                            data: [[1, d[0]], [2, d[1]], [3, d[2]], [4, d[3]], [5, d[4]], [6, d[5]], [7, d[6]], [8, d[7]], [9, d[8]], [10, d[9]], [11, d[10]], [12, d[11]]]
+                        },
+                        {
+                            color: "cyan",
+                            label: data_produk[1],
+                            data: [[1, e[0]], [2, e[1]], [3, e[2]], [4, e[3]], [5, e[4]], [6, e[5]], [7, e[6]], [8, e[7]], [9, e[8]], [10, e[9]], [11, e[10]], [12, e[11]]]
+                        },
+                        {
+                            color: "red",
+                            label: data_produk[2],
+                            data: [[1, f[0]], [2, f[1]], [3, f[2]], [4, f[3]], [5, f[4]], [6, f[5]], [7, f[6]], [8, f[7]], [9, f[8]], [10, f[9]], [11, f[10]], [12, f[11]]]
+                        },
+                        {
+                            color: "purple",
+                            label: data_produk[3],
+                            data: [[1, g[0]], [2, g[1]], [3, g[2]], [4, g[3]], [5, g[4]], [6, g[5]], [7, g[6]], [8, g[7]], [9, g[8]], [10, g[9]], [11, g[10]], [12, g[11]]]
+                        },
+                        {
+                            color: "yellow",
+                            label: data_produk[4],
+                            data: [[1, h[0]], [2, h[1]], [3, h[2]], [4, h[3]], [5, h[4]], [6, h[5]], [7, h[6]], [8, h[7]], [9, h[8]], [10, h[9]], [11, h[10]], [12, h[11]]]
+                        }
+
+                    ], {
+                        series: {
+                            bars: {
+                                show: true,
+                                barWidth: 0.15,
+                                align: "center",
+                                order: 1
+                            }
+                        },
+                        xaxis: {
+                            mode: "categories",
+                            ticks: [
+                                [0, "Januari"],
+                                [1, "Februari"],
+                                [2, "Maret"],
+                                [3, "April"],
+                                [4, "Mei"],
+                                [5, "Juni"],
+                                [6, "Juli"],
+                                [7, "Agustus"],
+                                [8, "September"],
+                                [9, "Oktober"],
+                                [10, "November"],
+                                [11, "Desember"],
+                            ],
+                            tickLength: 1,
+
+                        },
+                        grid: {
+                            hoverable: true,
+                        },
+                        yAxis: {
+                            allowDecimals: false,
+                        }
+                    });
+                    $("#label_thn2").text(response.thn2);
+
+                    var previousPoint = null;
+                    $("#placeholder6").bind("plothover", function (event, pos, item) {
+                        $("#x").text(pos.x);
+                        $("#y").text(pos.y);
+                        if (item) {
+                            if (previousPoint != item.dataIndex) {
+                                previousPoint = item.dataIndex;
+                                $("#tooltip").remove();
+                                var x = item.datapoint[0],
+                                        y = item.datapoint[1],
+                                        z = item.datapoint[2];
+
+//                                for (var i = 0; i < series; i++) {
+//                                    data_omzet[i] = [response.data[i].Bulan];
+//                                }
+                                //showTooltip(item.pageX, item.pageY, "Penjualan" + " Bulan " + data_omzet[x] + " = " + y);
+                                showTooltip(item.pageX, item.pageY, y);
+                            }
+                        } else {
+                            $("#tooltip").remove();
+                            previousPoint = null;
+                        }
+                    });
+                }
+
+            });
+        }
+
+    };
+
     // function to initiate Chart 2 Produk Terlaris berdasarkan Tahun
     var runChartProdukTerlaris = function () {
         $.ajax({
@@ -551,6 +682,7 @@ var Index = function () {
     return {
         init: function () {
             runChartOmzetByQty();
+            runChartOmzetByPerItem();
 //            runChart1();
             runChartProdukTerlaris();
 //            runChart3();

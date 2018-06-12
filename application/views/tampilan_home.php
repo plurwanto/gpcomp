@@ -283,10 +283,12 @@ if (!empty($userId)) {
             <div class="footer-inner">
                 2017 &copy; GP Comp All rights reserved.
             </div>
+
         </div>
         <a href="#index" class="scroll-top-wrapper">
             <span class="go-top"><i class="icon-arrow fa-chevron-up"></i></span>
         </a>
+
         <div class="scroll-top-wrapper ">
             <span class="scroll-top-inner">
                 <i class="fa fa-arrow-up"></i>
@@ -308,8 +310,6 @@ if (!empty($userId)) {
         <script src="<?php echo base_url();?>assets/plugins/nprogress/nprogress.js"></script>
         <script src="<?php echo base_url();?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script src="<?php echo base_url();?>assets/js/main.js"></script>
-        <script src="<?php echo base_url();?>assets/js/jquery.table2excel.js"></script>
-        
         <!-- end: MAIN JAVASCRIPTS -->
         <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 <!--        <script type="text/javascript" src="<?php echo base_url();?>assets/plugins/select2/select2.min.js"></script>-->
@@ -319,10 +319,13 @@ if (!empty($userId)) {
         <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 
         <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-        <script src="<?php echo base_url();?>assets/plugins/flot/jquery.flot.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/flot/jquery.flot.resize.js"></script>
+
+        <script src="<?php echo base_url();?>assets/plugins/flot/jquery.flot.min.js"></script>
         <script src="<?php echo base_url();?>assets/plugins/flot/jquery.flot.categories.js"></script>
+        <script src="<?php echo base_url();?>assets/plugins/flot/jquery.flot.orderBars.js"></script>
         <script src="<?php echo base_url();?>assets/plugins/flot/jquery.flot.pie.js"></script>
+
+
         <script src="<?php echo base_url();?>assets/js/charts.js"></script>
         <script src="<?php echo base_url();?>assets/js/index.js"></script>
         <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

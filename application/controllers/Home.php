@@ -1,7 +1,5 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Home extends CI_Controller {
 
     function __Construct() {
@@ -31,7 +29,26 @@ class Home extends CI_Controller {
             $data[] = array(
                 'Bulan' => $mylib->bulan($row['Bulan']),
                 'TotJual' => $row['TotJual'],
-                'TotQty' => $row['TotQty'], 
+                'TotQty' => $row['TotQty'],
+            );
+        }
+        $output = array(
+            "thn" => $tahun,
+            "data" => $data
+        );
+        echo json_encode($output);
+    }
+
+    function getTotalPenjualanDetailByYear($thn) {
+        $mylib = new Globallib();
+        $result = $this->Home_model->getTotalPenjualanDetailByYear($thn);
+        $data = array();
+        foreach ($result as $row) {
+            $tahun = $row['Tahun'];
+            // $bulan = $row['Bulan'];
+            $data[] = array(
+                'NamaProduk' => $row['NamaProduk'],
+                'TotQty' => array($row['1'], $row['2'], $row['3'], $row['4'],$row['5'], $row['6'], $row['7'], $row['8'],$row['9'], $row['10'], $row['11'], $row['12']),
             );
         }
         $output = array(
