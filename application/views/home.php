@@ -97,44 +97,47 @@
         </div>
         <!-- end: CATEGORIES PANEL -->
     </div>
-    
+
     <div class="col-md-12">
-        <!-- start: CATEGORIES PANEL -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="icon-external-link-sign"></i>
-                Grafik Penjualan Per Item
-                <div class="panel-tools">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary btn-xs">
-                            Tahun <span id="tahun_ini2"></span>
-                        </button>
-                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <?php
-                            foreach ($tahun as $value) {
-                                echo "<li value='" . $value['Thn'] . "'><a href='#'>Tahun " . $value['Thn'] . "</a></li>";
-                            }
-                            ?>
-                        </ul>
+        
+            <!-- start: CATEGORIES PANEL -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="icon-external-link-sign"></i>
+                    Grafik Penjualan Per Item
+                    <div class="panel-tools">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-xs">
+                                Tahun <span id="tahun_ini2"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <?php
+                                foreach ($tahun as $value) {
+                                    echo "<li value='" . $value['Thn'] . "'><a href='#'>Tahun " . $value['Thn'] . "</a></li>";
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
+                        </a>
                     </div>
-                    <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
-                    </a>
                 </div>
-            </div>
-            <div class="panel-body">
-                <div class="flot-container">
-                    <div id="placeholder6" class="flot-placeholder"></div>
+                
+                <div class="panel-body">
+                    <div class="flot-container">
+                        <div id="placeholder6" class="flot-placeholder"></div>
+                    </div>
+                    <br>
+                    <div class="center">Tahun <span id="label_thn2"></span></div>
                 </div>
-                <br>
-                <div class="center">Tahun <span id="label_thn2"></span></div>
             </div>
         </div>
         <!-- end: CATEGORIES PANEL -->
     </div>
-    
+
     <div class="col-md-10">
         <!-- start: CATEGORIES PANEL -->
         <div class="panel panel-default">

@@ -49,7 +49,10 @@ class Home_model extends CI_Model {
     function get_count_penjualan_by_produk() {
         $this->db->select('NamaProduk, COUNT(*) AS Jumlah')
                 ->from('penjualan_detail')
-                ->group_by('NamaProduk');
+                ->join('penjualan_header', 'penjualan_header.IDTransaksi=penjualan_detail.IDTransaksi', 'inner')
+                ->group_by('NamaProduk')
+                ->order_by('penjualan_header.Tanggal', 'ASC')
+                ->order_by('NamaProduk', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }

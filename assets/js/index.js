@@ -231,6 +231,7 @@ var Index = function () {
                             data: {show: true}
                         }
                     },
+                    colors: ["blue", "yellow", "cyan", "red", "purple"],
                     grid: {
                         hoverable: true,
                         clickable: true
