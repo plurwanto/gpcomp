@@ -30,7 +30,7 @@
                                             <select id="sltsitus" name="sltsitus" class="form-control">
                                                 <?php
                                                 foreach ($list_kategory as $value) {
-                                                    echo '<option value="'.$value["CategoryId"].'">'.$value["CategoryName"].'</option>';
+                                                    echo '<option value="' . $value["CategoryId"] . '">' . $value["CategoryName"] . '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -42,6 +42,10 @@
                                         <button type="button" id="upload" class="btn btn-primary start">
                                             <i class="glyphicon glyphicon-upload"></i>
                                             <span>Start upload</span>
+                                        </button>
+                                        <button type="button" id="cancel" class="btn btn-default" onclick="location.reload();">
+                                            <i class="glyphicon glyphicon-refresh"></i>
+                                            <span>Cancel</span>
                                         </button>
                                         <button type="submit" id="save" class="btn btn-info">
                                             <i class="glyphicon glyphicon-save"></i>
@@ -146,6 +150,7 @@
                 });
                 $('#tbldata').hide();
                 $('#save').hide();
+                $('#cancel').hide();
                 $('.delete').hide();
 
                 $('#upload').click(function () {
@@ -175,39 +180,74 @@
                             type: 'post',
                             success: function (response) {
                                 $('#save').show();
+                                $('#cancel').show();
                                 $('#totalRow').text("Showing " + response.data.length + " entries");
                                 $('table#barangtable tr#baris0').remove();
                                 var tr;
-                                for (var i = 0; i < response.data.length; i++) {
-                                    x = i + 1;
-                                    $('table#barangtable tr#baris' + x).remove();
-                                    html = '<tr id="baris">';
-                                    html += '<td nowrap><input type="checkbox" class="case" name="chkchild[]" id="chkchild' + x + '""></td>';
-                                    html += '<td nowrap><input type="text" name="field1[]" id="field' + x + '" value="' + response.data[i][1] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field7[]" id="field' + x + '" value="' + response.data[i][7] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field14[]" id="field' + x + '" value="' + response.data[i][14] + '"></td>';
-                                    //html += '<td nowrap><input type="text" name="field23[]" id="field' + x + '" value="' + response.hrg[i][23] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field15[]" id="field' + x + '" value="' + response.data[i][15] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field19[]" id="field' + x + '" value="' + response.data[i][19] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field3[]" id="field' + x + '" value="' + response.data[i][3] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field4[]" id="field' + x + '" value="' + response.data[i][4] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field5[]" id="field' + x + '" value="' + response.data[i][5] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field6[]" id="field' + x + '" value="' + response.data[i][6] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field8[]" id="field' + x + '" value="' + response.data[i][8] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field9[]" id="field' + x + '" value="' + response.data[i][9] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field10[]" id="field' + x + '" value="' + response.data[i][10] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field11[]" id="field' + x + '" value="' + response.data[i][11] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field12[]" id="field' + x + '" value="' + response.data[i][12] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field13[]" id="field' + x + '" value="' + response.data[i][13] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field16[]" id="field' + x + '" value="' + response.data[i][16] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field17[]" id="field' + x + '" value="' + response.data[i][17] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field18[]" id="field' + x + '" value="' + response.data[i][18] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field20[]" id="field' + x + '" value="' + response.data[i][20] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field21[]" id="field' + x + '" value="' + response.data[i][21] + '"></td>';
-                                    html += '<td nowrap><input type="text" name="field22[]" id="field' + x + '" value="' + response.data[i][22] + '"></td>';
-                                    html += '</tr>';
-                                    $('#barangtable').append(html);
+                                if (response.situs == "BL") {
+                                    for (var i = 0; i < response.data.length; i++) {
+                                        x = i + 1;
+                                        $('table#barangtable tr#baris' + x).remove();
+                                        html = '<tr id="baris">';
+                                        html += '<td nowrap><input type="checkbox" class="case" name="chkchild[]" id="chkchild' + x + '""></td>';
+                                        html += '<td nowrap><input type="text" name="field1[]" id="field' + x + '" value="' + response.data[i][1] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field7[]" id="field' + x + '" value="' + response.data[i][7] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field14[]" id="field' + x + '" value="' + response.data[i][14] + '"></td>';
+                                        //html += '<td nowrap><input type="text" name="field23[]" id="field' + x + '" value="' + response.hrg[i][23] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field15[]" id="field' + x + '" value="' + response.data[i][15] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field19[]" id="field' + x + '" value="' + response.data[i][19] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field3[]" id="field' + x + '" value="' + response.data[i][3] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field4[]" id="field' + x + '" value="' + response.data[i][4] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field5[]" id="field' + x + '" value="' + response.data[i][5] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field6[]" id="field' + x + '" value="' + response.data[i][6] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field8[]" id="field' + x + '" value="' + response.data[i][8] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field9[]" id="field' + x + '" value="' + response.data[i][9] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field10[]" id="field' + x + '" value="' + response.data[i][10] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field11[]" id="field' + x + '" value="' + response.data[i][11] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field12[]" id="field' + x + '" value="' + response.data[i][12] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field13[]" id="field' + x + '" value="' + response.data[i][13] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field16[]" id="field' + x + '" value="' + response.data[i][16] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field17[]" id="field' + x + '" value="' + response.data[i][17] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field18[]" id="field' + x + '" value="' + response.data[i][18] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field20[]" id="field' + x + '" value="' + response.data[i][20] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field21[]" id="field' + x + '" value="' + response.data[i][21] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field22[]" id="field' + x + '" value="' + response.data[i][22] + '"></td>';
+                                        html += '</tr>';
+                                        $('#barangtable').append(html);
+                                    }
+                                } else if (response.situs == "TP") {
+                                    for (var i = 0; i < response.data.length; i++) {
+                                        x = i + 1;
+                                        $('table#barangtable tr#baris' + x).remove();
+                                        html = '<tr id="baris">';
+                                        html += '<td nowrap><input type="checkbox" class="case" name="chkchild[]" id="chkchild' + x + '""></td>';
+                                        html += '<td nowrap><input type="text" name="field1[]" id="field' + x + '" value="' + response.data[i][1] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field7[]" id="field' + x + '" value="' + response.data[i][3] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field14[]" id="field' + x + '" value="' + response.data[i][4] + '"></td>';
+                                        //html += '<td nowrap><input type="text" name="field23[]" id="field' + x + '" value="' + response.hrg[i][23] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field15[]" id="field' + x + '" value="' + response.data[i][5] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field19[]" id="field' + x + '" value="' + response.data[i][6] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field3[]" id="field' + x + '" value="' + response.data[i][7] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field4[]" id="field' + x + '" value="' + response.data[i][8] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field5[]" id="field' + x + '" value="' + response.data[i][9] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field6[]" id="field' + x + '" value="' + response.data[i][10] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field8[]" id="field' + x + '" value="' + response.data[i][11] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field9[]" id="field' + x + '" value="' + response.data[i][12] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field10[]" id="field' + x + '" value="' + response.data[i][13] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field11[]" id="field' + x + '" value="' + response.data[i][14] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field12[]" id="field' + x + '" value="' + response.data[i][15] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field13[]" id="field' + x + '" value="' + response.data[i][16] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field16[]" id="field' + x + '" value="' + response.data[i][17] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field17[]" id="field' + x + '" value="' + response.data[i][18] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field18[]" id="field' + x + '" value="' + response.data[i][19] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field20[]" id="field' + x + '" value="' + response.data[i][20] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field21[]" id="field' + x + '" value="' + response.data[i][21] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field22[]" id="field' + x + '" value="' + response.data[i][22] + '"></td>';
+                                        html += '</tr>';
+                                        $('#barangtable').append(html);
+                                    }
                                 }
 
                                 $('#file').val('');
@@ -266,13 +306,13 @@
                 });
             });
 
-            
+
             function reload_table()
             {
                 table.ajax.reload(null, false); //reload datatable ajax 
             }
 
-                      
+
 
             function nProggress() {
                 NProgress.start();

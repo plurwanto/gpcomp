@@ -93,22 +93,28 @@ class Penjualan_model extends CI_Model {
         $this->db->where('IDTransaksi', $id);
         $this->db->delete($this->table);
     }
-    
-    function get_hargaBeliByName($name){
+
+    function get_hargaBeliByName($name) {
         $this->db->select('HargaBeliProduk')
                 ->from('produk')
                 ->where('NamaProduk', $name);
         $query = $this->db->get();
         return $query->result_array();
-        
     }
 
-    function getKategory(){
+    function getKategory() {
         $this->db->select('CategoryId,CategoryName')
                 ->from('category')
-                ->where('Status','Y');
+                ->where('Status', 'Y');
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
+    function get_districts() {
+        $this->db->select('name')
+                ->from('districts');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 }

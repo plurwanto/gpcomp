@@ -57,7 +57,6 @@ class Penjualan extends CI_Controller {
             if (0 < $_FILES['file']['error']) {
                 echo 'Error during file upload' . $_FILES['file']['error'];
             } else {
-
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
                 if (!$this->upload->do_upload('file')) {
@@ -70,32 +69,80 @@ class Penjualan extends CI_Controller {
                     if ($this->csvimport->get_array($file)) {
                         $csv_array = $this->csvimport->get_array($file);
                         $data = array();
-                        $hrgBeli = array();
-                        foreach ($csv_array as $key => $rows) {
-                            $data[] = array(
-                                '1' => $rows['Tanggal'],
-                                '2' => $rows['ID Transaksi'],
-                                '3' => $rows['Transaksi Dropshipper'],
-                                '4' => $rows['Nama Dropshipper'],
-                                '5' => $rows['Detail Dropshipper'],
-                                '6' => $rows['Penjual'],
-                                '7' => $rows['Pembeli'],
-                                '8' => $rows['HP Pembeli'],
-                                '9' => $rows['Alamat Pembeli'],
-                                '10' => $rows['Kecamatan Pembeli'],
-                                '11' => $rows['Kota Pembeli'],
-                                '12' => $rows['Propinsi Pembeli'],
-                                '13' => $rows['Kode Pos Pembeli'],
-                                '14' => $rows['Nama Produk'],
-                                '15' => ($rows['Harga Produk'] / $rows['Jumlah Produk']),
-                                '16' => $rows['Biaya Pengiriman'],
-                                '17' => $rows['Biaya Asuransi'],
-                                '18' => $rows['Total Terbayar'], //($rows['Harga Produk'] / $rows['Jumlah Produk']) * $rows['Jumlah Produk'] + $rows['Biaya Pengiriman'] + $rows['Biaya Asuransi'], //$rows['Total Terbayar'],
-                                '19' => $rows['Jumlah Produk'],
-                                '20' => $rows['Kurir'],
-                                '21' => $rows['Kode Tracking'],
-                                '22' => $rows['Status'],
-                            );
+                        if ($situs == "BL") { // from bukalapak
+                            foreach ($csv_array as $key => $rows) {
+                                $data[] = array(
+                                    '1' => $rows['Tanggal'],
+                                    '2' => $rows['ID Transaksi'],
+                                    '3' => $rows['Transaksi Dropshipper'],
+                                    '4' => $rows['Nama Dropshipper'],
+                                    '5' => $rows['Detail Dropshipper'],
+                                    '6' => $rows['Penjual'],
+                                    '7' => $rows['Pembeli'],
+                                    '8' => $rows['HP Pembeli'],
+                                    '9' => $rows['Alamat Pembeli'],
+                                    '10' => $rows['Kecamatan Pembeli'],
+                                    '11' => $rows['Kota Pembeli'],
+                                    '12' => $rows['Propinsi Pembeli'],
+                                    '13' => $rows['Kode Pos Pembeli'],
+                                    '14' => $rows['Nama Produk'],
+                                    '15' => ($rows['Harga Produk'] / $rows['Jumlah Produk']),
+                                    '16' => $rows['Biaya Pengiriman'],
+                                    '17' => $rows['Biaya Asuransi'],
+                                    '18' => $rows['Total Terbayar'], //($rows['Harga Produk'] / $rows['Jumlah Produk']) * $rows['Jumlah Produk'] + $rows['Biaya Pengiriman'] + $rows['Biaya Asuransi'], //$rows['Total Terbayar'],
+                                    '19' => $rows['Jumlah Produk'],
+                                    '20' => $rows['Kurir'],
+                                    '21' => $rows['Kode Tracking'],
+                                    '22' => $rows['Status'],
+                                );
+                            }
+                        } elseif ($situs == "TP") {
+                            $data_kecamatan = $this->penjualan->get_districts();
+
+                            $arr_kec = array();
+                            foreach ($data_kecamatan as $value) {
+                                $arr_kec[] = $value['name'];
+                            }
+
+//                            if (array_search("CUT", $arr_kec)) {
+//                                echo "found";
+//                            } else {
+//                                echo "not found";
+//                            }
+
+                            foreach ($csv_array as $key => $rows) {
+                                $alamat = explode(",", $rows['Recipient Address']);
+                                if (array_search('TEUPAH BARAT', $arr_kec)) {
+                                    echo "found";
+                                } else {
+                                    echo "not found";
+                                }
+
+                                $data[] = array(
+                                    '1' => $rows['Payment Date'],
+                                    '2' => trim($rows['Invoice']),
+                                    '3' => trim($rows['Recipient']),
+                                    '4' => trim($rows['Product Name']),
+                                    '5' => preg_replace("/[^0-9]/", "", $rows['Price (Rp.)']),
+                                    '6' => $rows['Quantity'],
+                                    '7' => '',
+                                    '8' => '',
+                                    '9' => '',
+                                    '10' => 'GP Comp',
+                                    '11' => $rows['Recipient Number'],
+                                    '12' => substr($alamat[0], 0, 100),
+                                    '13' => $alamat[1],
+                                    '14' => $alamat[1],
+                                    '15' => preg_replace("/[0-9]+/", "", $alamat[2]),
+                                    '16' => preg_replace("/[^0-9]/", "", $alamat[2]),
+                                    '17' => preg_replace("/[^0-9]/", "", $rows['Shipping Price + fee (Rp.)']),
+                                    '18' => preg_replace("/[^0-9]/", "", $rows['Insurance (Rp.)']),
+                                    '19' => preg_replace("/[^0-9]/", "", $rows['Total Amount (Rp.)']), //($rows['Harga Produk'] / $rows['Jumlah Produk']) * $rows['Jumlah Produk'] + $rows['Biaya Pengiriman'] + $rows['Biaya Asuransi'], //$rows['Total Terbayar'],
+                                    '20' => $rows['Courier'],
+                                    '21' => $rows['AWB'],
+                                    '22' => $rows['Order Status'],
+                                );
+                            }
                         }
                         $output = array(
                             "situs" => $situs,
@@ -114,7 +161,7 @@ class Penjualan extends CI_Controller {
         //error_reporting(0);
         $situs_1 = $this->input->post('sltsitus');
         $field_1 = $this->input->post('field1');
-        $field_2 = $this->input->post('field2');
+        $field_2 = trim($this->input->post('field2'));
         $field_3 = $this->input->post('field3');
         $field_4 = $this->input->post('field4');
         $field_5 = $this->input->post('field5');

@@ -1,0 +1,13 @@
+Invoice,Product ID,Product Name,Quantity,Notes,Price (Rp.),Customer Name,Customer Phone,Recipient,Recipient Number,Recipient Address,Courier,Shipping Price + fee (Rp.),Insurance (Rp.),Total Shipping Fee (Rp.),Total Amount (Rp.),AWB,Order Status,Payment Date
+INV/20180613/XVIII/VI/171094141,255981718,USB Flashdisk Bootable Windows 32GB Dilengkapi Driver Pack 2017,2,1pcs windows 7 64bit + 1pcs windows 10 64 bit,Rp 179.000,harry dwijaya,081322235533,Harry,081322235533,"Jalan Darma Kusuma no 51
+Perumahan Singgasana Pradana
+Bandung Kidul, Kota Bandung, 40238
+Jawa Barat",JNE(YES),Rp 22.000,Rp 0,Rp 22.000,Rp 380.000,013610203635618,Transaksi selesai.,13-06-2018 04:20:32
+INV/20180618/XVIII/VI/171454592,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Dani Kurniawan,083830692269,I Wayan Dani K,083830692269,"Rungkut Menanggal Harapan P-30
+Gununganyar, Kota Surabaya, 60293
+Jawa Timur",JNE(Reguler),Rp 19.000,Rp 0,Rp 19.000,Rp 109.000,013610206244218,Transaksi selesai.,18-06-2018 12:51:44
+INV/20180618/XVIII/VI/171481889,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Dhiauddin,085781866606,DHIAUDDIN,085781866606,"JL. MOH. KAHFI I GG MANGGIS NO. 24H
+RT. 01 RW.04 JAGAKARSA
+JAKARTA SELATAN 12620
+Jagakarsa, Jakarta Selatan, 12620
+DKI Jakarta",J&T(Reguler),Rp 10.000,Rp 0,Rp 10.000,Rp 100.000,JT0001370584,Transaksi selesai.,18-06-2018 16:07:15
