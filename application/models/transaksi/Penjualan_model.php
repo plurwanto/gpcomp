@@ -110,11 +110,4 @@ class Penjualan_model extends CI_Model {
         return $query->result_array();
     }
 
-    function get_districts() {
-        $this->db->select('name')
-                ->from('districts');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
 }

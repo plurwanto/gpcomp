@@ -97,26 +97,9 @@ class Penjualan extends CI_Controller {
                                 );
                             }
                         } elseif ($situs == "TP") {
-                            $data_kecamatan = $this->penjualan->get_districts();
-
-                            $arr_kec = array();
-                            foreach ($data_kecamatan as $value) {
-                                $arr_kec[] = $value['name'];
-                            }
-
-//                            if (array_search("CUT", $arr_kec)) {
-//                                echo "found";
-//                            } else {
-//                                echo "not found";
-//                            }
-
                             foreach ($csv_array as $key => $rows) {
                                 $alamat = explode(",", $rows['Recipient Address']);
-                                if (array_search('TEUPAH BARAT', $arr_kec)) {
-                                    echo "found";
-                                } else {
-                                    echo "not found";
-                                }
+                                $almt = explode("\n", $alamat[0]);
 
                                 $data[] = array(
                                     '1' => $rows['Payment Date'],
@@ -130,8 +113,8 @@ class Penjualan extends CI_Controller {
                                     '9' => '',
                                     '10' => 'GP Comp',
                                     '11' => $rows['Recipient Number'],
-                                    '12' => substr($alamat[0], 0, 100),
-                                    '13' => $alamat[1],
+                                    '12' => $almt[0],//substr($alamat[0], 0, 100),
+                                    '13' => $almt[1],
                                     '14' => $alamat[1],
                                     '15' => preg_replace("/[0-9]+/", "", $alamat[2]),
                                     '16' => preg_replace("/[^0-9]/", "", $alamat[2]),
