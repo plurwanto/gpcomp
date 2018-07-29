@@ -1,0 +1,43 @@
+Count,Invoice,Product ID,Product Name,Quantity,Notes,Price (Rp.),Customer Name,Customer Phone,Recipient,Recipient Number,Recipient Address,Courier,Shipping Price + fee (Rp.),Insurance (Rp.),Total Shipping Fee (Rp.),Total Amount (Rp.),AWB,Order Status,Payment Date
+1,INV/20180619/XVIII/VI/171585429,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Dyah Ayu Pangastuti,08563103088,Ayu,08563103088,"Jl. Kerja Bakti 6-45 komp. Pinewood Blok A1A
+Kramatjati, Jakarta Timur, 13510
+DKI Jakarta",JNE(Reguler),Rp 9.000,Rp 0,Rp 9.000,Rp 99.000,013610206692918,Transaksi selesai.,19-06-2018 11:48:06
+2,INV/20180619/XVIII/VI/171634202,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,babehnyakamila,081210811038,sumarsono,081210811038,"jl.p Flores 2 no.53 RT.001/010 perumnas 3 Bekasi timur
+Bekasi Timur, Kota Bekasi, 17111
+Jawa Barat",JNE(Reguler),Rp 9.000,Rp 0,Rp 9.000,Rp 99.000,013610206693818,Transaksi selesai.,19-06-2018 16:48:20
+1,INV/20180620/XVIII/VI/171740213,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Niki Chandra,0811902265,Niki Chandra,0811902265,"Green Garden blok A5 no 14
+Kebon Jeruk, Jakarta Barat, 11520
+DKI Jakarta",Go-Send(Same Day),Rp 15.000,Rp 0,Rp 15.000,Rp 105.000,GK-86185460,Transaksi selesai.,20-06-2018 10:14:12
+1,INV/20180621/XVIII/VI/172020920,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,SUYANTO,628126430552,Suyanto,08126430552,"Jalan Bilal Ujung Gg. Inpres No. 270F
+Medan Timur, Kota Medan, 20239
+Sumatera Utara",JNE(Reguler),Rp 30.000,Rp 0,Rp 30.000,Rp 120.000,013610208334918,Transaksi selesai.,21-06-2018 12:47:53
+2,INV/20180621/XVIII/VI/172080318,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Allam Putra Rachimillah,081231516414,Allam Putra R,081231516414,"Jl. Gatot Subroto No.42 RT.3/RW.2 
+Mampang Prapatan, Jakarta Selatan, 12710
+DKI Jakarta",JNE(Reguler),Rp 9.000,Rp 0,Rp 9.000,Rp 99.000,013610208333018,Transaksi selesai.,21-06-2018 15:49:18
+1,INV/20180622/XVIII/VI/172371368,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,tolong jangan cacat??,Rp 90.000,yoakim edi sukaryo,087877973881,Edi,087877973881,"Grand Interkon Plaza blok a10 kembangan meruya selatan
+Kebon Jeruk, Jakarta Barat, 11650
+DKI Jakarta",JNE(Reguler),Rp 9.000,Rp 0,Rp 9.000,Rp 99.000,013610211935618,Transaksi selesai.,22-06-2018 19:46:36
+1,INV/20180627/XVIII/VI/173614855,255981718,USB Flashdisk Bootable Windows 32GB Dilengkapi Driver Pack 2017,1,"1. Win 7 Ult 32/64 bit
+2. Win 8.1 All in One 64 bit
+3. Win 10 Pro 32/64 bit",Rp 179.000,Muhammad Dani,082177177475,Muhammad Dani,082177177475,"PT. Pertamina (Persero) TBBM Panjang
+Jl. Sumatera No.1 Kompleks Pelabuhan Panjang Bandar Lampung
+Panjang, Kota Bandar Lampung, 35241
+Lampung",JNE(Reguler),Rp 19.000,Rp 0,Rp 19.000,Rp 198.000,013610216741918,Transaksi selesai.,27-06-2018 00:40:21
+2,INV/20180626/XVIII/VI/173519532,238495246,Driver Pack Solution 2017 USB Flashdisk Sandisk 16GB,1,versi terbaru,Rp 90.000,dede supriyadi,6289668967947,rt parma,089668967947,"jalan tajur hambalang RT 01/04 no. 24 desa tajur gang mesjid jami nurussalam
+Citeureup, Kab. Bogor, 16810
+Jawa Barat",JNE(Reguler),Rp 9.000,Rp 0,Rp 9.000,Rp 99.000,013610216740018,Transaksi selesai.,27-06-2018 09:25:13
+3,INV/20180627/XVIII/VI/173852916,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Agus Virgono,081214741774,agus virgono,081217471774,"jl pasirjaya ix no 16
+Regol, Kota Bandung, 40254
+Jawa Barat",JNE(Reguler),Rp 11.000,Rp 0,Rp 11.000,Rp 101.000,013610218529318,Transaksi selesai.,27-06-2018 18:47:16
+1,INV/20180628/XVIII/VI/174031220,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Budi Kurniawan,085887850685,Kurniawan,087784303577,"Ruko pondok Aren plaza kav 14 no 51 Tangerang Selatan 15224
+Pondok Aren, Kota Tangerang Selatan, 15224
+Banten",JNE(YES),Rp 18.000,Rp 0,Rp 18.000,Rp 108.000,013610218520218,Transaksi selesai.,28-06-2018 12:57:54
+2,INV/20180628/XVIII/VI/174278129,271436496,USB flashdisk bootable windows 16GB,1,,Rp 109.000,Limmy,6281511747256,Limmy,081511747256,"Angkasa dalam 1 no 29-32 kuil Dewi Mandir
+Kemayoran, Jakarta Pusat, 10610
+DKI Jakarta",TIKI(Over Night Service),Rp 15.000,Rp 0,Rp 15.000,Rp 124.000,030101022003,Transaksi selesai.,28-06-2018 22:34:27
+1,INV/20180629/XVIII/VI/174389565,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Yul Khaidir,085654777444,yul khaidir (CSR),085654777444,"PT. Pamapersada Nusantara Jl Rawa gelam 1 No 9 kawasan industri pulogadung  jakarta timur
+Cakung, Jakarta Timur, 13930
+DKI Jakarta",JNE(YES),Rp 18.000,Rp 0,Rp 18.000,Rp 108.000,013610220371818,Transaksi selesai.,29-06-2018 10:54:49
+2,INV/20180629/XVIII/VI/174544811,260169057,Paket Software Design Corel - photoshop - autocad Flashdisk 16GB,1,,Rp 90.000,Ginanjar Khalid Akbar,081335222046,Ginanjar Khalid Akbar,081335222046,"Simpang Wisnuwardhana (AirDas) No. C4 (Depan B9)
+Kedungkandang, Kota Malang, 65139
+Jawa Timur",JNE(Reguler),Rp 22.000,Rp 0,Rp 22.000,Rp 112.000,013610220351218,Transaksi selesai.,29-06-2018 17:44:15

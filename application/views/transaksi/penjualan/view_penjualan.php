@@ -191,7 +191,7 @@
                                         html = '<tr id="baris">';
                                         html += '<td nowrap><input type="checkbox" class="case" name="chkchild[]" id="chkchild' + x + '""></td>';
                                         html += '<td nowrap><input type="text" name="field1[]" id="field' + x + '" value="' + response.data[i][1] + '"></td>';
-                                        html += '<td nowrap><input type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
+                                        html += '<td nowrap><input readonly type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
                                         html += '<td nowrap><input type="text" name="field7[]" id="field' + x + '" value="' + response.data[i][7] + '"></td>';
                                         html += '<td nowrap><input type="text" name="field14[]" id="field' + x + '" value="' + response.data[i][14] + '"></td>';
                                         //html += '<td nowrap><input type="text" name="field23[]" id="field' + x + '" value="' + response.hrg[i][23] + '"></td>';
@@ -223,7 +223,7 @@
                                         html = '<tr id="baris">';
                                         html += '<td nowrap><input type="checkbox" class="case" name="chkchild[]" id="chkchild' + x + '""></td>';
                                         html += '<td nowrap><input type="text" name="field1[]" id="field' + x + '" value="' + response.data[i][1] + '"></td>';
-                                        html += '<td nowrap><input type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
+                                        html += '<td nowrap><input readonly type="text" name="field2[]" id="field' + x + '" value="' + response.data[i][2] + '"></td>';
                                         html += '<td nowrap><input type="text" name="field7[]" id="field' + x + '" value="' + response.data[i][3] + '"></td>';
                                         html += '<td nowrap><input type="text" name="field14[]" id="field' + x + '" value="' + response.data[i][4] + '"></td>';
                                         //html += '<td nowrap><input type="text" name="field23[]" id="field' + x + '" value="' + response.hrg[i][23] + '"></td>';
@@ -245,6 +245,7 @@
                                         html += '<td nowrap><input type="text" name="field20[]" id="field' + x + '" value="' + response.data[i][20] + '"></td>';
                                         html += '<td nowrap><input type="text" name="field21[]" id="field' + x + '" value="' + response.data[i][21] + '"></td>';
                                         html += '<td nowrap><input type="text" name="field22[]" id="field' + x + '" value="' + response.data[i][22] + '"></td>';
+                                        html += '<td nowrap><input type="text" name="field23[]" id="field' + x + '" value="' + response.data[i][23] + '"></td>';
                                         html += '</tr>';
                                         $('#barangtable').append(html);
                                     }

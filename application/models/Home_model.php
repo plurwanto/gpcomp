@@ -58,11 +58,11 @@ class Home_model extends CI_Model {
     }
 
     function getTotalPenjualanByYear($thn) {
-        $this->db->select('YEAR(Tanggal) AS Tahun, MONTH(Tanggal) AS Bulan, SUM(HargaProduk-HargaBeli) AS TotJual, SUM(JumlahProduk) AS TotQty')
+        $this->db->select('YEAR(Tanggal) AS Tahun, MONTH(Tanggal) AS Bulan, SUM(JumlahProduk * HargaProduk) - SUM(JumlahProduk * HargaBeli) AS TotJual, SUM(JumlahProduk) AS TotQty')
                 ->from('penjualan_detail')
                 ->join('penjualan_header', 'penjualan_header.IDTransaksi=penjualan_detail.IDTransaksi', 'inner')
                 ->where('YEAR(penjualan_header.Tanggal)', $thn)
-                ->group_by('MONTH(Tanggal)')
+                ->group_by('MONTH(Tanggal),YEAR(Tanggal)')
                 ->order_by('Tanggal', 'ASC');
         $query = $this->db->get();
         // echo $this->db->last_query();

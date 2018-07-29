@@ -113,17 +113,18 @@ class Penjualan extends CI_Controller {
                                     '9' => '',
                                     '10' => 'GP Comp',
                                     '11' => $rows['Recipient Number'],
-                                    '12' => $almt[0],//substr($alamat[0], 0, 100),
-                                    '13' => $almt[1],
-                                    '14' => $alamat[1],
-                                    '15' => preg_replace("/[0-9]+/", "", $alamat[2]),
-                                    '16' => preg_replace("/[^0-9]/", "", $alamat[2]),
+                                    '12' => trim($almt[0]), //substr($alamat[0], 0, 100),
+                                    '13' => trim($almt[1]), //kecamatan
+                                    '14' => trim(substr($alamat[1], 0, 50)), // kota/kab
+                                    '15' => trim(preg_replace("/[0-9]+/", "", $alamat[2])), //provinsi
+                                    '16' => trim(preg_replace("/[^0-9]/", "", $alamat[2])), //kode pos
                                     '17' => preg_replace("/[^0-9]/", "", $rows['Shipping Price + fee (Rp.)']),
                                     '18' => preg_replace("/[^0-9]/", "", $rows['Insurance (Rp.)']),
                                     '19' => preg_replace("/[^0-9]/", "", $rows['Total Amount (Rp.)']), //($rows['Harga Produk'] / $rows['Jumlah Produk']) * $rows['Jumlah Produk'] + $rows['Biaya Pengiriman'] + $rows['Biaya Asuransi'], //$rows['Total Terbayar'],
                                     '20' => $rows['Courier'],
                                     '21' => $rows['AWB'],
                                     '22' => $rows['Order Status'],
+                                    '23' => $rows['Product ID'],
                                 );
                             }
                         }
@@ -133,6 +134,7 @@ class Penjualan extends CI_Controller {
                         );
                         echo json_encode($output); ///tinggal save aja ke database
                     }
+                    unlink($file);//remove file from upload directory
                 }
             }
         } else {
@@ -144,7 +146,7 @@ class Penjualan extends CI_Controller {
         //error_reporting(0);
         $situs_1 = $this->input->post('sltsitus');
         $field_1 = $this->input->post('field1');
-        $field_2 = trim($this->input->post('field2'));
+        $field_2 = $this->input->post('field2');
         $field_3 = $this->input->post('field3');
         $field_4 = $this->input->post('field4');
         $field_5 = $this->input->post('field5');
@@ -165,10 +167,11 @@ class Penjualan extends CI_Controller {
         $field_20 = $this->input->post('field20');
         $field_21 = $this->input->post('field21');
         $field_22 = $this->input->post('field22');
+        $field_23 = $this->input->post('field23');
 
         for ($i = 0; $i < count($field_2); $i++) {
             $data = array('CategoryId' => $situs_1,
-                'Tanggal' => $field_1[$i],
+                'Tanggal' => date("Y-m-d H:i:s", strtotime($field_1[$i])),
                 'IDTransaksi' => $field_2[$i],
                 'TransaksiDropshipper' => $field_3[$i],
                 'NamaDropshipper' => $field_4[$i],
@@ -197,10 +200,15 @@ class Penjualan extends CI_Controller {
         }
 
         for ($i = 0; $i < count($field_2); $i++) {
-            $list_hargaBeli = $this->penjualan->get_hargaBeliByName($field_14[$i]);
-
+            if ($situs_1 == "BL") {
+                $list_hargaBeli = $this->penjualan->get_hargaBeliByName($field_14[$i]);
+                $nmProduk = $field_14[$i];
+            } elseif ($situs_1 == "TP") {
+                $list_hargaBeli = $this->penjualan->get_hargaBeliByID($field_23[$i]);
+                $nmProduk = $list_hargaBeli[0]['NamaProduk'];
+            }
             $data_detail = array('IDTransaksi' => $field_2[$i],
-                'NamaProduk' => $field_14[$i],
+                'NamaProduk' => $nmProduk,
                 'HargaBeli' => $list_hargaBeli[0]['HargaBeliProduk'],
                 'HargaProduk' => $field_15[$i],
                 'JumlahProduk' => $field_19[$i],
