@@ -114,7 +114,7 @@ class Penjualan extends CI_Controller {
                                     '10' => 'GP Comp',
                                     '11' => $rows['Recipient Number'],
                                     '12' => trim($almt[0]), //substr($alamat[0], 0, 100),
-                                    '13' => trim($almt[1]), //kecamatan
+                                    '13' => trim($almt[0]), //kecamatan
                                     '14' => trim(substr($alamat[1], 0, 50)), // kota/kab
                                     '15' => trim(preg_replace("/[0-9]+/", "", $alamat[2])), //provinsi
                                     '16' => trim(preg_replace("/[^0-9]/", "", $alamat[2])), //kode pos
@@ -124,7 +124,7 @@ class Penjualan extends CI_Controller {
                                     '20' => $rows['Courier'],
                                     '21' => $rows['AWB'],
                                     '22' => $rows['Order Status'],
-                                    '23' => $rows['Product ID'],
+                                    '23' => $rows['Stock Keeping Unit (SKU)'],
                                 );
                             }
                         }

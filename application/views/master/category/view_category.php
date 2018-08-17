@@ -87,7 +87,7 @@
                     dataType: "JSON",
                     success: function (data)
                     {
-                        $('[name="id"]').val(data.CategoryId);
+                        $('[name="categoryId"]').val(data.CategoryId);
                         $('[name="categoryName"]').val(data.CategoryName);
                         $('[name="status"]').val(data.Status);
                         $('#modal_form').modal('show');
@@ -185,6 +185,13 @@
                         <form action="#" id="form" class="form-horizontal">
                             <input type="hidden" value="" name="id"/> 
                             <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Category Id</label>
+                                    <div class="col-md-9">
+                                        <input name="categoryId" placeholder="Category Id" class="form-control" type="text">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Category Name</label>
                                     <div class="col-md-9">

@@ -49,6 +49,7 @@ class Category extends CI_Controller {
         $UserId = $this->session->userdata("id_gpcomp");
         $this->_validate();
         $data = array(
+            'CategoryId' => strtoupper($this->input->post('categoryId')),
             'CategoryName' => strtoupper($this->input->post('categoryName')),
             'Status' => $this->input->post('status'),
             'AddDate' => date('Y-m-d'),
@@ -83,6 +84,11 @@ class Category extends CI_Controller {
         $data['inputerror'] = array();
         $data['status'] = TRUE;
 
+        if ($this->input->post('categoryId') == '') {
+            $data['inputerror'][] = 'categoryId';
+            $data['error_string'][] = 'category Id is required';
+            $data['status'] = FALSE;
+        }
         if ($this->input->post('categoryName') == '') {
             $data['inputerror'][] = 'categoryName';
             $data['error_string'][] = 'Pairs Name is required';
