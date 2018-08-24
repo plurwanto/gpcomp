@@ -96,7 +96,7 @@ class Penjualan extends CI_Controller {
                                     '22' => $rows['Status'],
                                 );
                             }
-                        } elseif ($situs == "TP") {
+                        } elseif ($situs == "TP" || $situs == "LZ") {
                             foreach ($csv_array as $key => $rows) {
                                 $alamat = explode(",", $rows['Recipient Address']);
                                 $almt = explode("\n", $alamat[0]);
@@ -203,7 +203,7 @@ class Penjualan extends CI_Controller {
             if ($situs_1 == "BL") {
                 $list_hargaBeli = $this->penjualan->get_hargaBeliByName($field_14[$i]);
                 $nmProduk = $field_14[$i];
-            } elseif ($situs_1 == "TP") {
+            } elseif ($situs_1 == "TP" || $situs_1 == "LZ") {
                 $list_hargaBeli = $this->penjualan->get_hargaBeliByID($field_23[$i]);
                 $nmProduk = $list_hargaBeli[0]['NamaProduk'];
             }
