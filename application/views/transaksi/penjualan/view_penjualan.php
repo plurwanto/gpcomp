@@ -216,7 +216,7 @@
                                         html += '</tr>';
                                         $('#barangtable').append(html);
                                     }
-                                } else if (response.situs == "TP") {
+                                } else if (response.situs == "TP" || response.situs == "LZ") {
                                     for (var i = 0; i < response.data.length; i++) {
                                         x = i + 1;
                                         $('table#barangtable tr#baris' + x).remove();
