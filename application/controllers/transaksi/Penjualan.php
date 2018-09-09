@@ -96,11 +96,13 @@ class Penjualan extends CI_Controller {
                                     '22' => $rows['Status'],
                                 );
                             }
-                        } elseif ($situs == "TP" || $situs == "LZ") {
+                        } elseif ($situs == "TP" || $situs == "LZ" || $situs == "SP") {
                             foreach ($csv_array as $key => $rows) {
                                 $alamat = explode(",", $rows['Recipient Address']);
                                 $almt = explode("\n", $alamat[0]);
-
+                                $almt1 = $almt[count($almt)-1]; // +1 so we don't include the space in our result
+                                //$almt1 = substr($alamat, $last_word_start);
+                                
                                 $data[] = array(
                                     '1' => $rows['Payment Date'],
                                     '2' => trim($rows['Invoice']),
@@ -114,7 +116,7 @@ class Penjualan extends CI_Controller {
                                     '10' => 'GP Comp',
                                     '11' => $rows['Recipient Number'],
                                     '12' => trim($almt[0]), //substr($alamat[0], 0, 100),
-                                    '13' => trim($almt[0]), //kecamatan
+                                    '13' => $almt1, //kecamatan
                                     '14' => trim(substr($alamat[1], 0, 50)), // kota/kab
                                     '15' => trim(preg_replace("/[0-9]+/", "", $alamat[2])), //provinsi
                                     '16' => trim(preg_replace("/[^0-9]/", "", $alamat[2])), //kode pos
@@ -134,7 +136,7 @@ class Penjualan extends CI_Controller {
                         );
                         echo json_encode($output); ///tinggal save aja ke database
                     }
-                    unlink($file);//remove file from upload directory
+                    unlink($file); //remove file from upload directory
                 }
             }
         } else {
@@ -203,7 +205,7 @@ class Penjualan extends CI_Controller {
             if ($situs_1 == "BL") {
                 $list_hargaBeli = $this->penjualan->get_hargaBeliByName($field_14[$i]);
                 $nmProduk = $field_14[$i];
-            } elseif ($situs_1 == "TP" || $situs_1 == "LZ") {
+            } elseif ($situs_1 == "TP" || $situs_1 == "LZ" || $situs_1 == "SP") {
                 $list_hargaBeli = $this->penjualan->get_hargaBeliByID($field_23[$i]);
                 $nmProduk = $list_hargaBeli[0]['NamaProduk'];
             }
