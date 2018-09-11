@@ -104,6 +104,7 @@ class Pembelian extends CI_Controller {
                         );
                         echo json_encode($output); ///tinggal save aja ke database
                     }
+                    unlink($file); //remove file from upload directory
                 }
             }
         } else {
